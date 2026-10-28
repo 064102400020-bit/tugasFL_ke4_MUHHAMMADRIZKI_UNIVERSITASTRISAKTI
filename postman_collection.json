@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "a9d3e871-331e-450a-bcf8-92582fbcf7c2",
+		"name": "Tugas Framework Laravel 4 - REST API",
+		"description": "Koleksi Postman untuk Tugas Framework Laravel ke-4 (Read All & Create Data untuk Genre dan Author)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Genres",
+			"item": [
+				{
+					"name": "1. Get All Genres",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/genres",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"genres"
+							]
+						},
+						"description": "Mengambil seluruh daftar data genre buku dari database (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Create Genre - Berhasil (201)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Misteri\",\n  \"description\": \"Kisah penuh teka-teki, investigasi detektif, dan pengungkapan rahasia.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/genres",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"genres"
+							]
+						},
+						"description": "Menambahkan data genre baru ke database (HTTP Status: 201 Created)."
+					},
+					"response": []
+				},
+				{
+					"name": "3. Create Genre - Gagal Validasi Nama Kosong (422)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\",\n  \"description\": \"Deskripsi tanpa nama genre\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/genres",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"genres"
+							]
+						},
+						"description": "Uji coba validasi ketika field 'name' kosong (HTTP Status: 422 Unprocessable Entity)."
+					},
+					"response": []
+				},
+				{
+					"name": "4. Create Genre - Gagal Validasi Nama Duplikat (422)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fiksi\",\n  \"description\": \"Mencoba membuat genre dengan nama yang sudah ada di database.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/genres",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"genres"
+							]
+						},
+						"description": "Uji coba validasi keunikan field 'name' yang sudah terdaftar (HTTP Status: 422 Unprocessable Entity)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "1. Get All Authors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authors"
+							]
+						},
+						"description": "Mengambil seluruh daftar data penulis/author dari database (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Create Author - Berhasil (201)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ahmad Fuadi\",\n  \"bio\": \"Penulis novel trilogi Negeri 5 Menara, mantan wartawan TEMPO dan VOA.\",\n  \"country\": \"Indonesia\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authors"
+							]
+						},
+						"description": "Menambahkan data penulis baru ke database (HTTP Status: 201 Created)."
+					},
+					"response": []
+				},
+				{
+					"name": "3. Create Author - Gagal Validasi Nama Kosong (422)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\",\n  \"bio\": \"Penulis tanpa nama\",\n  \"country\": \"Indonesia\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authors"
+							]
+						},
+						"description": "Uji coba validasi ketika field 'name' kosong (HTTP Status: 422 Unprocessable Entity)."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
