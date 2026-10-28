@@ -1,3 +1,4 @@
+# tugasFL_ke4_MUHHAMMADRIZKI_UNIVERSITASTRISAKTI
 # Tugas Framework Laravel 4 — Read & Create Data (REST API)
 
 Tugas mata kuliah Pemrograman Framework Laravel ke-4: Implementasi REST API untuk operasi **Read All Data (GET)** dan **Create Data (POST)** menggunakan **Eloquent ORM**, **Data Validation**, **$fillable (Mass Assignment Protection)**, serta pengelolaan **HTTP Status Codes** yang standar (200, 201, 422, 500).
