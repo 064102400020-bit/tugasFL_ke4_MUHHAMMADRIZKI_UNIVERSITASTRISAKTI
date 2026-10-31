@@ -245,3 +245,4 @@ class GenreApiTest extends TestCase
             ]);
     }
 }
+

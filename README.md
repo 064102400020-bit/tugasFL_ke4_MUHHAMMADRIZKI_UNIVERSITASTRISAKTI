@@ -7,9 +7,12 @@ Tugas mata kuliah Pemrograman Framework Laravel ke-5: Implementasi RESTful API u
 ## 📋 Informasi Mahasiswa & Repositori
 - **Mahasiswa**: MUHAMMAD RIZKI (NIM: 064102400020)
 - **Instansi**: Universitas Trisakti
-- **Nama Repositori**: `tugasFL_ke4_MUHHAMMADRIZKI_UNIVERSITASTRISAKTI`
-- **GitHub URL**: [https://github.com/064102400020-bit/tugasFL_ke4_MUHHAMMADRIZKI_UNIVERSITASTRISAKTI.git](https://github.com/064102400020-bit/tugasFL_ke4_MUHHAMMADRIZKI_UNIVERSITASTRISAKTI.git)
-- **Lokasi File Controller**:
+- **Nama Repositori**: `TUGAS_FRAMEWORKLARAVEL-KE-5`
+- **GitHub URL**: [https://github.com/064102400020-bit/TUGAS_FRAMEWORKLARAVEL-KE-5.git](https://github.com/064102400020-bit/TUGAS_FRAMEWORKLARAVEL-KE-5.git)
+- **Tautan Controller di GitHub**:
+  - [GenreController.php](https://github.com/064102400020-bit/TUGAS_FRAMEWORKLARAVEL-KE-5/blob/main/app/Http/Controllers/GenreController.php)
+  - [AuthorController.php](https://github.com/064102400020-bit/TUGAS_FRAMEWORKLARAVEL-KE-5/blob/main/app/Http/Controllers/AuthorController.php)
+- **Lokasi File Controller Lokal**:
   - `app/Http/Controllers/GenreController.php`
   - `app/Http/Controllers/AuthorController.php`
 - **Lokasi File Route API**:

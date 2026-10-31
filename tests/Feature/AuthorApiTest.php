@@ -250,3 +250,4 @@ class AuthorApiTest extends TestCase
             ]);
     }
 }
+
