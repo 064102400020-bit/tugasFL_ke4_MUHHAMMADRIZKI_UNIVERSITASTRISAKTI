@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "a9d3e871-331e-450a-bcf8-92582fbcf7c2",
-		"name": "Tugas Framework Laravel 4 - REST API",
-		"description": "Koleksi Postman untuk Tugas Framework Laravel ke-4 (Read All & Create Data untuk Genre dan Author)",
+		"name": "Tugas Framework Laravel 5 - API Resource",
+		"description": "Koleksi Postman untuk Tugas Framework Laravel ke-5 (Implementasi Show, Update, Destroy Genre & Author menggunakan API Resource)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -22,13 +22,8 @@
 						],
 						"url": {
 							"raw": "{{base_url}}/api/genres",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"genres"
-							]
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres"]
 						},
 						"description": "Mengambil seluruh daftar data genre buku dari database (HTTP Status: 200 OK)."
 					},
@@ -56,13 +51,8 @@
 						},
 						"url": {
 							"raw": "{{base_url}}/api/genres",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"genres"
-							]
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres"]
 						},
 						"description": "Menambahkan data genre baru ke database (HTTP Status: 201 Created)."
 					},
@@ -90,22 +80,57 @@
 						},
 						"url": {
 							"raw": "{{base_url}}/api/genres",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"genres"
-							]
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres"]
 						},
 						"description": "Uji coba validasi ketika field 'name' kosong (HTTP Status: 422 Unprocessable Entity)."
 					},
 					"response": []
 				},
 				{
-					"name": "4. Create Genre - Gagal Validasi Nama Duplikat (422)",
+					"name": "4. Show Genre - ID Ditemukan (200)",
 					"request": {
-						"method": "POST",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/genres/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "1"]
+						},
+						"description": "Menampilkan detail data genre berdasarkan ID yang tersedia (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "5. Show Genre - ID Tidak Ditemukan (404)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/genres/99999",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "99999"]
+						},
+						"description": "Menampilkan respons error ketika ID genre tidak ditemukan di database (HTTP Status: 404 Not Found)."
+					},
+					"response": []
+				},
+				{
+					"name": "6. Update Genre - PUT Berhasil (200)",
+					"request": {
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Accept",
@@ -120,19 +145,141 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Fiksi\",\n  \"description\": \"Mencoba membuat genre dengan nama yang sudah ada di database.\"\n}"
+							"raw": "{\n  \"name\": \"Fiksi Modern\",\n  \"description\": \"Karya sastra berupa cerita rekaan modern dengan alur mendalam.\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/api/genres",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"genres"
-							]
+							"raw": "{{base_url}}/api/genres/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "1"]
 						},
-						"description": "Uji coba validasi keunikan field 'name' yang sudah terdaftar (HTTP Status: 422 Unprocessable Entity)."
+						"description": "Mengubah data genre secara penuh berdasarkan ID (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "7. Update Genre - PATCH Berhasil (200)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Deskripsi genre diperbarui melalui metode PATCH.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/genres/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "1"]
+						},
+						"description": "Mengubah sebagian data genre berdasarkan ID (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "8. Update Genre - Gagal Validasi (422)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/genres/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "1"]
+						},
+						"description": "Uji coba validasi ketika pembaruan data genre mengirim field name kosong (HTTP Status: 422 Unprocessable Entity)."
+					},
+					"response": []
+				},
+				{
+					"name": "9. Update Genre - ID Tidak Ditemukan (404)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Genre Tidak Ditemukan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/genres/99999",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "99999"]
+						},
+						"description": "Respons error ketika memperbarui ID genre yang tidak ada (HTTP Status: 404 Not Found)."
+					},
+					"response": []
+				},
+				{
+					"name": "10. Delete Genre - Berhasil (200)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/genres/2",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "2"]
+						},
+						"description": "Menghapus data genre berdasarkan ID yang tersedia (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "11. Delete Genre - ID Tidak Ditemukan (404)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/genres/99999",
+							"host": ["{{base_url}}"],
+							"path": ["api", "genres", "99999"]
+						},
+						"description": "Respons error ketika menghapus ID genre yang tidak ada (HTTP Status: 404 Not Found)."
 					},
 					"response": []
 				}
@@ -154,13 +301,8 @@
 						],
 						"url": {
 							"raw": "{{base_url}}/api/authors",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"authors"
-							]
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors"]
 						},
 						"description": "Mengambil seluruh daftar data penulis/author dari database (HTTP Status: 200 OK)."
 					},
@@ -184,17 +326,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Ahmad Fuadi\",\n  \"bio\": \"Penulis novel trilogi Negeri 5 Menara, mantan wartawan TEMPO dan VOA.\",\n  \"country\": \"Indonesia\"\n}"
+							"raw": "{\n  \"name\": \"Ahmad Fuadi\",\n  \"bio\": \"Penulis novel trilogi Negeri 5 Menara, mantan wartawan TEMPO dan VOA.\"\n  \"country\": \"Indonesia\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/authors",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"authors"
-							]
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors"]
 						},
 						"description": "Menambahkan data penulis baru ke database (HTTP Status: 201 Created)."
 					},
@@ -222,15 +359,206 @@
 						},
 						"url": {
 							"raw": "{{base_url}}/api/authors",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"authors"
-							]
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors"]
 						},
 						"description": "Uji coba validasi ketika field 'name' kosong (HTTP Status: 422 Unprocessable Entity)."
+					},
+					"response": []
+				},
+				{
+					"name": "4. Show Author - ID Ditemukan (200)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authors/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "1"]
+						},
+						"description": "Menampilkan detail data author berdasarkan ID yang tersedia (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "5. Show Author - ID Tidak Ditemukan (404)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authors/99999",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "99999"]
+						},
+						"description": "Menampilkan respons error ketika ID author tidak ditemukan di database (HTTP Status: 404 Not Found)."
+					},
+					"response": []
+				},
+				{
+					"name": "6. Update Author - PUT Berhasil (200)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Pramoedya Ananta Toer\",\n  \"bio\": \"Sastrawan besar Indonesia, penulis Tetralogi Buru yang terkenal di seluruh dunia (Edisi Diperbarui).\",\n  \"country\": \"Indonesia\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authors/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "1"]
+						},
+						"description": "Mengubah data author secara penuh berdasarkan ID (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "7. Update Author - PATCH Berhasil (200)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bio\": \"Biografi diperbarui via metode PATCH.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authors/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "1"]
+						},
+						"description": "Mengubah sebagian data author berdasarkan ID (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "8. Update Author - Gagal Validasi (422)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authors/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "1"]
+						},
+						"description": "Uji coba validasi ketika pembaruan data author mengirim field name kosong (HTTP Status: 422 Unprocessable Entity)."
+					},
+					"response": []
+				},
+				{
+					"name": "9. Update Author - ID Tidak Ditemukan (404)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Author Tidak Ditemukan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authors/99999",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "99999"]
+						},
+						"description": "Respons error ketika memperbarui ID author yang tidak ada (HTTP Status: 404 Not Found)."
+					},
+					"response": []
+				},
+				{
+					"name": "10. Delete Author - Berhasil (200)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authors/2",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "2"]
+						},
+						"description": "Menghapus data author berdasarkan ID yang tersedia (HTTP Status: 200 OK)."
+					},
+					"response": []
+				},
+				{
+					"name": "11. Delete Author - ID Tidak Ditemukan (404)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authors/99999",
+							"host": ["{{base_url}}"],
+							"path": ["api", "authors", "99999"]
+						},
+						"description": "Respons error ketika menghapus ID author yang tidak ada (HTTP Status: 404 Not Found)."
 					},
 					"response": []
 				}

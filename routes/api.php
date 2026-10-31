@@ -6,23 +6,29 @@ use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes — Tugas Framework Laravel ke-4
-| Materi: Read All Data & Create Data (GET & POST)
+| API Routes — Tugas Framework Laravel ke-5
+| Materi: Implementasi Show, Update, Destroy Genre & Author (API Resource)
 |--------------------------------------------------------------------------
 |
-| Semua route di sini memiliki prefix /api secara otomatis
-| (dikonfigurasi di bootstrap/app.php).
+| Semua route di bawah ini memiliki prefix /api secara otomatis
+| sebagaimana dikonfigurasi pada bootstrap/app.php.
 |
 */
 
-// ─── GENRE ROUTES ─────────────────────────────────────────────────────────────
+// ─── API RESOURCE ROUTES ───────────────────────────────────────────────────────
+// Route::apiResource() secara otomatis mendaftarkan 5 endpoint RESTful:
+// 1. GET        /api/genres          -> genres.index   (GenreController@index)
+// 2. POST       /api/genres          -> genres.store   (GenreController@store)
+// 3. GET        /api/genres/{genre}  -> genres.show    (GenreController@show)
+// 4. PUT/PATCH  /api/genres/{genre}  -> genres.update  (GenreController@update)
+// 5. DELETE     /api/genres/{genre}  -> genres.destroy (GenreController@destroy)
 
-// GET /api/genres   → Ambil semua data genre (HTTP 200)
-// POST /api/genres  → Buat genre baru (HTTP 201 | 422 jika validasi gagal)
-Route::apiResource('genres', GenreController::class)->only(['index', 'store']);
+Route::apiResource('genres', GenreController::class);
 
-// ─── AUTHOR ROUTES ────────────────────────────────────────────────────────────
+// 1. GET        /api/authors         -> authors.index   (AuthorController@index)
+// 2. POST       /api/authors         -> authors.store   (AuthorController@store)
+// 3. GET        /api/authors/{author}-> authors.show    (AuthorController@show)
+// 4. PUT/PATCH  /api/authors/{author}-> authors.update  (AuthorController@update)
+// 5. DELETE     /api/authors/{author}-> authors.destroy (AuthorController@destroy)
 
-// GET /api/authors   → Ambil semua data author (HTTP 200)
-// POST /api/authors  → Buat author baru (HTTP 201 | 422 jika validasi gagal)
-Route::apiResource('authors', AuthorController::class)->only(['index', 'store']);
+Route::apiResource('authors', AuthorController::class);
